@@ -1,0 +1,48 @@
+name: Build macOS (test)
+
+# Manual test build: unsigned (ad-hoc signed) DMG/ZIP for Apple Silicon and Intel,
+# uploaded as a workflow artifact. Signed + notarized builds come from release.yml.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Package (ad-hoc signed, no notarization)
+        # Apple Silicon refuses to run unsigned code, so sign ad-hoc ("-"). Hardened runtime is
+        # only needed for notarization and breaks ad-hoc library validation, so it's off here.
+        run: >-
+          npx electron-builder --mac --publish never
+          -c.mac.identity=- -c.mac.hardenedRuntime=false -c.mac.notarize=false
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - name: Verify signature and that the app launches
+        run: |
+          APP="dist/mac-arm64/Meet Recorder.app"
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          "$APP/Contents/MacOS/Meet Recorder" > launch.log 2>&1 &
+          PID=$!
+          sleep 15
+          if ! kill -0 $PID 2>/dev/null; then echo "App exited early"; cat launch.log; exit 1; fi
+          kill $PID
+          echo "App stayed up for 15 s"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: meet-recorder-macos
+          path: |
+            dist/*.dmg
+            dist/*.zip
+          if-no-files-found: error
+          retention-days: 14

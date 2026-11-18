@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Design source for build/icon.{png,icns,ico} and resources/icon.png.
+       No SVG rasterizer was available in CI, so the PNGs are rendered by an
+       equivalent Pillow script; keep this file in sync with the design. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b1e3a"/>
+      <stop offset="1" stop-color="#3b2f6e"/>
+    </linearGradient>
+  </defs>
+  <rect x="41" y="41" width="942" height="942" rx="225" fill="url(#bg)"/>
+  <circle cx="512" cy="379" r="138" fill="none" stroke="#ff636e" stroke-opacity="0.78" stroke-width="16"/>
+  <circle cx="512" cy="379" r="97" fill="#ff4757"/>
+  <g fill="#f5f6ff">
+    <rect x="231" y="625" width="35" height="112" rx="17"/>
+    <rect x="296" y="574" width="35" height="214" rx="17"/>
+    <rect x="361" y="604" width="35" height="154" rx="17"/>
+    <rect x="426" y="528" width="35" height="306" rx="17"/>
+    <rect x="491" y="584" width="35" height="194" rx="17"/>
+    <rect x="556" y="528" width="35" height="306" rx="17"/>
+    <rect x="621" y="604" width="35" height="154" rx="17"/>
+    <rect x="686" y="574" width="35" height="214" rx="17"/>
+    <rect x="751" y="625" width="35" height="112" rx="17"/>
+  </g>
+</svg>

@@ -1,0 +1,86 @@
+appId: com.radicalloop.meetrecorder
+productName: Meet Recorder
+directories:
+  buildResources: build
+files:
+  - 'out/**'
+  - 'resources/icon.png'
+  - LICENSE
+asarUnpack:
+  - resources/**
+# Ad-hoc signs macOS builds when there is no Developer ID certificate (see the file).
+afterPack: build/adhoc-sign.mjs
+
+win:
+  executableName: meet-recorder
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - arm64
+  # Code signing is optional and driven entirely by env:
+  # set CSC_LINK + CSC_KEY_PASSWORD (PFX), or configure win.azureSignOptions
+  # here plus AZURE_TENANT_ID/AZURE_CLIENT_ID/AZURE_CLIENT_SECRET for
+  # Azure Trusted Signing. Unsigned builds work without any of these.
+nsis:
+  artifactName: ${name}-${version}-setup-${arch}.${ext}
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  oneClick: true
+  perMachine: false
+  createDesktopShortcut: always
+
+mac:
+  target:
+    - target: dmg
+      arch:
+        - arm64
+        - x64
+    - target: zip
+      arch:
+        - arm64
+        - x64
+  category: public.app-category.productivity
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  extendInfo:
+    NSMicrophoneUsageDescription: >-
+      Meet Recorder records your microphone so your side of the meeting can be
+      captured and transcribed.
+    NSAudioCaptureUsageDescription: >-
+      Meet Recorder captures system audio so the other participants in your
+      meeting can be recorded and transcribed.
+  # true = notarize with credentials from env (APPLE_ID +
+  # APPLE_APP_SPECIFIC_PASSWORD + APPLE_TEAM_ID, or APPLE_API_KEY +
+  # APPLE_API_KEY_ID + APPLE_API_ISSUER). electron-builder skips notarization
+  # with a warning when the env vars are absent, so unsigned builds still work.
+  notarize: true
+dmg:
+  artifactName: ${name}-${version}-${arch}.${ext}
+
+linux:
+  executableName: meet-recorder
+  target:
+    - AppImage
+    - deb
+  maintainer: RadicalLoop <radicalloopdev@gmail.com>
+  category: AudioVideo
+  synopsis: Record meetings and generate transcripts and AI notes
+  description: >-
+    Records your screen, system audio where supported, and your microphone.
+    After recording, it generates a timestamped transcript and meeting notes
+    with a summary, decisions and action items using your own
+    OpenAI API key.
+appImage:
+  artifactName: ${name}-${version}.${ext}
+
+npmRebuild: false
+# Change owner/repo if you fork; used by `electron-builder --publish` in the
+# release workflow (needs GH_TOKEN). No auto-update in v1.
+publish:
+  provider: github
+  releaseType: draft
+  owner: radicalloop
+  repo: meet-recorder
