@@ -1,3 +1,5 @@
+<img src="resources/icon.png" alt="Meet Recorder logo" width="96">
+
 # Meet Recorder
 
 Meet Recorder is a desktop app for macOS, Windows and Linux. Capture a screen or window, your
@@ -6,6 +8,13 @@ transcript** and **AI meeting notes** with a summary, decisions, action items an
 
 Use **your own OpenAI API key** for transcription and notes. The app sends requests directly to
 OpenAI and saves recordings and Markdown files on your computer.
+
+## Demo
+
+[Watch the 29-second walkthrough](docs/demo/Meet-Recorder-Walkthrough.mp4) to see how a recording
+becomes a timestamped transcript and structured notes. The walkthrough uses a simulated meeting.
+
+[![Demo preview showing a sample meeting summary, decisions, action items and open questions](docs/demo/meet-recorder-preview.png)](docs/demo/Meet-Recorder-Walkthrough.mp4)
 
 ## Download
 
