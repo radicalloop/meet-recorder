@@ -14,7 +14,7 @@ OpenAI and saves recordings and Markdown files on your computer.
 [Watch the 29-second walkthrough](docs/demo/Meet-Recorder-Walkthrough.mp4) to see how a recording
 becomes a timestamped transcript and structured notes. The walkthrough uses a simulated meeting.
 
-[![Demo preview showing a sample meeting summary, decisions, action items and open questions](docs/demo/meet-recorder-preview.png)](docs/demo/Meet-Recorder-Walkthrough.mp4)
+[![Animated walkthrough: starting a recording, then reviewing the timestamped transcript and the meeting notes](docs/demo/meet-recorder-demo.gif)](docs/demo/Meet-Recorder-Walkthrough.mp4)
 
 ## Download
 
