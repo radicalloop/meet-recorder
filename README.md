@@ -2,9 +2,13 @@
 
 # Meet Recorder
 
-Meet Recorder is a desktop app for macOS, Windows and Linux. Capture a screen or window, your
-microphone and system audio where supported. When you stop, the app writes a **timestamped
-transcript** and **AI meeting notes** with a summary, decisions, action items and open questions.
+**An open-source AI note-taker for your meetings.** Record any call (Zoom, Google Meet, Microsoft
+Teams or anything else on your screen) and get **AI meeting notes** with a summary, decisions,
+action items and open questions, plus a **timestamped transcript**.
+
+Meet Recorder is a desktop app for macOS, Windows and Linux. It captures a screen or window, your
+microphone and system audio where supported, and writes the notes when you stop. No bot joins
+your call.
 
 Use **your own OpenAI API key** for transcription and notes. The app sends requests directly to
 OpenAI and saves recordings and Markdown files on your computer.

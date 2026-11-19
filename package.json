@@ -1,7 +1,7 @@
 {
   "name": "meet-recorder",
   "version": "1.0.0",
-  "description": "Record meetings and generate timestamped transcripts and AI notes",
+  "description": "AI note-taker for meetings: records any call and writes AI notes and a timestamped transcript",
   "private": true,
   "productName": "Meet Recorder",
   "license": "MIT",

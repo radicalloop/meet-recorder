@@ -67,7 +67,7 @@ linux:
     - deb
   maintainer: RadicalLoop <radicalloopdev@gmail.com>
   category: AudioVideo
-  synopsis: Record meetings and generate transcripts and AI notes
+  synopsis: AI note-taker that records meetings and writes notes and transcripts
   description: >-
     Records your screen, system audio where supported, and your microphone.
     After recording, it generates a timestamped transcript and meeting notes
